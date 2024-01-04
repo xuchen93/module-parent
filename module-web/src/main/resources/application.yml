@@ -1,0 +1,6 @@
+xuchen:
+  module:
+    redis:
+      prefix: module
+    request:
+      log-detail: true
