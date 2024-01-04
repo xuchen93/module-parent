@@ -1,0 +1,15 @@
+spring:
+  jackson:
+    time-zone: GMT+8
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3310/sys?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    hikari:
+      connection-timeout: 500
+      maximum-pool-size: 20
+      minimum-idle: 10

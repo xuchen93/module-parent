@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 默认值是true,如果设置成false性能会有提高,但会带来程序崩溃导致的日志丢失 -->
+		<!--<immediateFlush>true</immediateFlush>-->
+		<!-- 如果设置会优先用file名写文件 -->
+		<file>${FILE_PATH}/${APP_NAME}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<if condition='p("DAY_LOG").equals("true")'>
+				<then>
+					<fileNamePattern>${FILE_PATH}/%d{yyyy-MM-dd}-%i.back</fileNamePattern>
+				</then>
+				<else>
+					<fileNamePattern>${FILE_PATH}/%d{yyyy-MM-dd-HH}-%i.back</fileNamePattern>
+				</else>
+			</if>
+			<!-- 日志保留时长 -->
+			<maxHistory>${FILE_MAX_HISTORY}</maxHistory>
+			<!-- 单文件最大1024MB -->
+			<maxFileSize>1024MB</maxFileSize>
+			<!-- 总空间大小 1024 * 10-->
+			<totalSizeCap>10240MB</totalSizeCap>
+			<!-- 清空历史文件-开启 -->
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+		</rollingPolicy>
+		<encoder>
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5level | ${APP_NAME} | %t | %50.50c:%-4.4line | %msg%n</Pattern>
+		</encoder>
+	</appender>
+
+	<!-- 异步输出 -->
+	<appender name="ASYNC-FILE" class="ch.qos.logback.classic.AsyncAppender">
+		<includeCallerData>true</includeCallerData>
+		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+		<discardingThreshold>0</discardingThreshold>
+		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+		<queueSize>512</queueSize>
+		<!-- 添加附加的appender,最多只能添加一个 -->
+		<appender-ref ref="FILE"/>
+	</appender>
+</included>

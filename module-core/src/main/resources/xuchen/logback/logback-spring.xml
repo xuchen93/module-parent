@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+	<conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+
+	<springProperty scope="context" name="LOG_LEVEL" source="xuchen.module.log.log-level" defaultValue="INFO"/>
+	<springProperty scope="context" name="ENABLE_STDOUT" source="xuchen.module.log.enable-stdout" defaultValue="true"/>
+	<springProperty scope="context" name="ENABLE_FILE" source="xuchen.module.log.enable-file" defaultValue="false"/>
+	<springProperty scope="context" name="ENABLE_ASYNC_FILE" source="xuchen.module.log.enable-async-file" defaultValue="false"/>
+	<springProperty scope="context" name="FILE_PATH" source="xuchen.module.log.file-path" defaultValue="./logs"/>
+	<springProperty scope="context" name="APP_NAME" source="xuchen.module.log.app-name" defaultValue="defaultName"/>
+	<springProperty scope="context" name="FILE_IS_DAY_TYPE" source="xuchen.module.log.file-is-day-type" defaultValue="true"/>
+	<springProperty scope="context" name="FILE_MAX_HISTORY" source="xuchen.module.log.file-max-history" defaultValue="60"/>
+	<contextName>logback</contextName>
+
+	<include resource="xuchen/logback/console-appender.xml"/>
+	<include resource="xuchen/logback/file-appender.xml"/>
+
+
+	<root level="${LOG_LEVEL}">
+		<if condition='p("ENABLE_STDOUT").equals("true")'>
+			<then>
+				<appender-ref ref="STDOUT"/>
+			</then>
+		</if>
+		<if condition='p("ENABLE_FILE").equals("true")'>
+			<then>
+				<appender-ref ref="FILE"/>
+			</then>
+		</if>
+		<if condition='p("ENABLE_ASYNC_FILE").equals("true")'>
+			<then>
+				<appender-ref ref="ASYNC-FILE"/>
+			</then>
+		</if>
+	</root>
+
+</included>

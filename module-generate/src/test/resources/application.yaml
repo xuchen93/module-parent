@@ -1,0 +1,25 @@
+xuchen:
+  module:
+    request:
+      log: true
+      detail: true
+      limit: true
+    redis:
+      prefix: demo:server
+    log:
+      app-name: server-demo
+      filePath: server-demo/logs
+spring:
+  jackson:
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://121.4.58.44:3310/test?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: test
+    password: 123456test
+  redis:
+    host: 121.4.58.44
+    password: password
+    port: 16379
+    database: 1
+    timeout: 300

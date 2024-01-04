@@ -1,0 +1,14 @@
+xuchen:
+  selenium:
+    common:
+      retryCount: 6
+      sleep-millis: 6666
+      proxy-method:
+        - findElementByXPath
+    chrome:
+      driver:
+        path: D:\software\chromedriver.exe
+        options:
+          - disable-plugins
+          - no-sandbox
+          - window-size=280,320
