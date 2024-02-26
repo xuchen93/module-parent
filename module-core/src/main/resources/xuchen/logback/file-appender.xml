@@ -7,12 +7,12 @@
 		<!-- 如果设置会优先用file名写文件 -->
 		<file>${FILE_PATH}/${APP_NAME}.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-			<if condition='p("DAY_LOG").equals("true")'>
+			<if condition='p("FILE_IS_DAY_TYPE").equals("true")'>
 				<then>
-					<fileNamePattern>${FILE_PATH}/%d{yyyy-MM-dd}-%i.back</fileNamePattern>
+					<fileNamePattern>${FILE_PATH}/%d{yyyy-MM-dd}-%i.log</fileNamePattern>
 				</then>
 				<else>
-					<fileNamePattern>${FILE_PATH}/%d{yyyy-MM-dd-HH}-%i.back</fileNamePattern>
+					<fileNamePattern>${FILE_PATH}/%d{yyyy-MM-dd-HH}-%i.log</fileNamePattern>
 				</else>
 			</if>
 			<!-- 日志保留时长 -->
